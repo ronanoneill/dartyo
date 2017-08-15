@@ -1,8 +1,8 @@
-#### $ dartyo_
+#### $ dartyo
 
-    **dartyo** is a simple cli tool that helps me time darts from work and home
+    **dartyo** is a simple cli tool that helps me time a dart from work and home
 
-##### Usage:
+#### Usage:
 ```bash
     $ pip install --editable .
     $ dartyo
