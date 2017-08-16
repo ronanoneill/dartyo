@@ -7,7 +7,7 @@ from termcolor import colored
 apiroot = 'http://api.irishrail.ie/realtime/realtime.asmx'
 
 @click.command()
-@click.option('--location', prompt='Your location:', help='In work (Tara) or at home (Howth J)?')
+@click.option('--location', prompt='Where? (w/h):', help='In work (Tara) or at home (Howth J)?')
 def cli(location):
     """
     CLI handler
@@ -33,7 +33,7 @@ def retrieveDartTimes(xmlroot, source):
     # Loop through all incoming trains
     for train in xmlroot['ArrayOfObjStationData']['objStationData']:
         # We only want Southbound trains if heading from home, Northbound if from work
-        if (train['Direction'] == ('Northbound' if source == 'work' else 'Southbound')):
+        if (train['Direction'] == ('Northbound' if source == 'w' else 'Southbound')):
             print colored(
                 '{} to {} arriving at {} ({} minutes)'.format(
                     train['Traintype']
