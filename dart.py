@@ -11,18 +11,6 @@ def cli(location):
     """
     times = retrieveDartTimes(retrieveXML(location), location)
 
-def retrieveXML(location):
-    """
-    Retreive the raw XML from the Irish Rail API
-    """
-    return ElementTree.fromstring(
-        urllib2.urlopen(
-            'http://api.irishrail.ie/realtime/realtime.asmx/'
-                + 'getStationDataByNameXML?StationDesc={}'
-                .format('Tara Street' if location == 'work' else 'Howth Junction')
-            ).read()
-    )
-
 def retrieveXML(source):
     """
     Retreive the raw XML from the Irish Rail API
