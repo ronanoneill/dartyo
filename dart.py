@@ -3,13 +3,16 @@ import click
 import xmltodict
 from termcolor import colored
 
+# Irish Rail API Docs: http://api.irishrail.ie/realtime/, below is the API root
+apiroot = 'http://api.irishrail.ie/realtime/realtime.asmx'
+
 @click.command()
-@click.option('--location', prompt='Your location:', help='Are you currently in work (Tara) or at home (Howth Junction)?')
+@click.option('--location', prompt='Your location:', help='In work (Tara) or at home (Howth J)?')
 def cli(location):
     """
-    Docstring here yo...
+    CLI handler
     """
-    times = retrieveDartTimes(retrieveXML(location), location)
+    retrieveDartTimes(retrieveXML(location), location)
 
 def retrieveXML(source):
     """
@@ -17,7 +20,7 @@ def retrieveXML(source):
     """
     return xmltodict.parse(
         urllib2.urlopen('{}/{}?{}'.format(
-            'http://api.irishrail.ie/realtime/realtime.asmx'
+            apiroot
             , 'getStationDataByCodeXML_WithNumMins'
             , 'StationCode={}&NumMins=60'.format('TARA' if source == 'w' else 'HWTHJ')
         )
